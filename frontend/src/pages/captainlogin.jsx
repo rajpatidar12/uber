@@ -22,10 +22,11 @@ const captainlogin = () => {
     <div className="p-7 h-screen flex flex-col justify-between">
       <div>
         <img
-          className="w-16 mb-8"
-          src="https://freelogopng.com/images/all_img/1659761100uber-logo-png.png"
+          className="w-20 mb-3"
+          src="https://www.svgrepo.com/show/505031/uber-driver.svg"
           alt=""
         />
+
         <form
           onSubmit={(e) => {
             submitHandler(e);
