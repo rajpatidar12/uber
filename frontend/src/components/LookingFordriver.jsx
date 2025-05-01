@@ -16,7 +16,7 @@ const LookingFordriver = (props) => {
       <div className="flex gap-4 justify-between flex-col">
         <img
           className="h-15 w-auto"
-          src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1712027307/assets/42/eb85c3-e2dc-4e95-a70d-22ee4f08015f/original/Screenshot-2024-04-01-at-9.08.07p.m..png"
+          src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg"
           alt=""
         />
         <div className="w-full mt-5">

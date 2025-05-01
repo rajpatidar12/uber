@@ -1,24 +1,31 @@
 import React from "react";
 
-const WaitingForDriver = () => {
+const WaitingForDriver = (props) => {
   return (
     <div>
       <h5
         className="p-1 text-center w-[93%] absolute top-0 cursor-pointer"
         onClick={() => {
-          props.setVehiclePanel(false);
+          props.waitingForDriver(false);
         }}
       >
         <i className="text-3xl text-gray-900 ri-arrow-down-wide-line"></i>
       </h5>
-      <h3 className="text-2xl font-semibold mb-5">Looking for a Driver</h3>
 
-      <div className="flex gap-4 justify-between flex-col">
+      <div className="flex item-center justify-between">
         <img
-          className="h-15 w-auto"
-          src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1712027307/assets/42/eb85c3-e2dc-4e95-a70d-22ee4f08015f/original/Screenshot-2024-04-01-at-9.08.07p.m..png"
+          className="h-12"
+          src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg"
           alt=""
         />
+        <div className="text-right">
+          <h2 className="text-lg font-medium">Rohit</h2>
+          <h4 className="text-xl font-semibold -mt-1 -mb-1">MP04CS4044</h4>
+          <p className="text-sm- text-gray-600">Maruti Suzuki Alto</p>
+        </div>
+      </div>
+
+      <div className="flex gap-2 justify-between flex-col items-center">
         <div className="w-full mt-5">
           <div className="flex items-center gap-5 p-3 border-b-2">
             <i className="text-lg ri-map-pin-fill"></i>
