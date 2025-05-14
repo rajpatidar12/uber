@@ -7,11 +7,11 @@ const captainSchema = new mongoose.Schema({
     firstname: {
       type: String,
       required: true,
-      minlength: [3, "First name must be at least 3 characters long"],
+      minlength: [3, "Firstname must be at least 3 characters long"],
     },
     lastname: {
       type: String,
-      minlength: [3, "Last name must be at least 3 characters long"],
+      minlength: [3, "Lastname must be at least 3 characters long"],
     },
   },
   email: {
@@ -19,7 +19,7 @@ const captainSchema = new mongoose.Schema({
     required: true,
     unique: true,
     lowercase: true,
-    match: [/.+@.+\..+/, "Please enter a valid email address"],
+    match: [/^\S+@\S+\.\S+$/, "Please enter a valid email"],
   },
   password: {
     type: String,
@@ -57,13 +57,14 @@ const captainSchema = new mongoose.Schema({
       required: true,
       enum: ["car", "motorcycle", "auto"],
     },
-    location: {
-      lat: {
-        type: Number,
-      },
-      lng: {
-        type: Number,
-      },
+  },
+
+  location: {
+    ltd: {
+      type: Number,
+    },
+    lng: {
+      type: Number,
     },
   },
 });
