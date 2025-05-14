@@ -1,36 +1,25 @@
 import React from "react";
+import "remixicon/fonts/remixicon.css";
 
 const LocationSearchPanel = (props) => {
-  // sample array for locations\
-
-  const locations = [
-    "Patidar's Cafe Mugaliya Hat,Bhopal",
-    "City Hospital, MP Nagar",
-    "DB Mall, Bhopal",
-    "LNCT University, Bhopal",
-    "Patidar's Restaurant, New Market",
-    "Goyal's Grocery Store, 10 No. Market",
-  ];
-
   return (
     <div>
-      {locations.map(function (elem, idx) {
-        return (
+      {props.suggestions && props.suggestions.length > 0 ? (
+        props.suggestions.map((elem, idx) => (
           <div
             key={idx}
-            onClick={() => {
-              props.setVehiclePanel(true);
-              props.setPanelOpen(false);
-            }}
-            className="flex item-center gap-4 border-2 p-3 border-gray-50 active:border-black rounded-xl  my-2 justify-start"
+            onClick={() => props.onSuggestionSelect(elem)}
+            className="flex gap-4 border-2 p-3 border-gray-50 active:border-black rounded-xl items-center my-2 justify-start cursor-pointer"
           >
-            <h2 className="bg-[#eee] flex items-center justify-center h-8 w-12 rounded-full">
+            <h2 className="bg-[#eee] h-8 flex items-center justify-center w-12 rounded-full">
               <i className="ri-map-pin-fill"></i>
             </h2>
-            <h4 className="font-medium">{elem}</h4>
+            <h4 className="font-medium">{elem.description}</h4>
           </div>
-        );
-      })}
+        ))
+      ) : (
+        <div className="p-3 text-gray-500">No suggestions</div>
+      )}
     </div>
   );
 };
