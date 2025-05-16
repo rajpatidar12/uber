@@ -10,7 +10,7 @@ const CaptainDetails = () => {
         <div className="flex items-center justify-start gap-3">
           <img
             className="h-10 w-10 rounded-full object-cover"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdlMd7stpWUCmjpfRjUsQ72xSWikidbgaI1w&s"
+            src="https://media.istockphoto.com/id/1389610405/vector/avatar-man-user-icon.webp?a=1&s=612x612&w=0&k=20&c=w1nOrLFXJjv_adB-cZi6YMFNW_J9SeE5D6bHONDslz0="
             alt=""
           />
           <h4 className="text-lg font-medium capitalize">
