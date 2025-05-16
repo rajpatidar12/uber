@@ -8,15 +8,16 @@ const {
   validateAutoComplete,
 } = require("../middlewares/maps.middleware");
 
+// Fixing the route handler names to match the controller
 router.get(
   "/geocode",
   query("address").isString().isLength({ min: 3 }),
   validateGeocodeParams,
-  mapController.getGeocode
+  mapController.getCoordinates
 );
 
 router.get(
-  "/distancematrix",
+  "/distance-matrix",
   query("origin").isString().isLength({ min: 3 }),
   query("destination").isString().isLength({ min: 3 }),
   validateDistanceMatrixParams,
@@ -24,10 +25,10 @@ router.get(
 );
 
 router.get(
-  "/place/autocomplete",
+  "/autocomplete",
   query("input").isString().isLength({ min: 3 }),
   validateAutoComplete,
-  mapController.getAutoComplete
+  mapController.getAutoCompleteSuggestions
 );
 
 module.exports = router;

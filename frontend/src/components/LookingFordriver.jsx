@@ -6,9 +6,7 @@ const LookingForDriver = (props) => {
       <h5
         className="p-1 text-center w-[93%] absolute top-0"
         onClick={() => {
-          if (typeof props.setVehicleFound === "function") {
-            props.setVehicleFound(false);
-          }
+          props.setVehicleFound(false);
         }}
       >
         <i className="text-3xl text-gray-200 ri-arrow-down-wide-line"></i>

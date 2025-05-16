@@ -40,20 +40,6 @@ function initializeSocket(server) {
       });
     });
 
-    // Listening for new ride creation
-    socket.on("create-ride", async (data) => {
-      console.log("Ride created:", data);
-
-      // Assuming you want to notify captains who are online
-      const captains = await captainModel.find(); // Retrieve all captains
-      captains.forEach((captain) => {
-        if (captain.socketId) {
-          io.to(captain.socketId).emit("new-ride", data); // Emit to each captain's socket
-          // console.log(`New ride sent to captain: ${captain.socketId}`);
-        }
-      });
-    });
-
     socket.on("disconnect", () => {
       console.log(`Client disconnected: ${socket.id}`);
     });

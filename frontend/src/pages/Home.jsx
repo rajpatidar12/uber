@@ -194,6 +194,7 @@ const Home = () => {
         },
       }
     );
+
     setFare(response.data);
   }
 
@@ -211,7 +212,6 @@ const Home = () => {
         },
       }
     );
-    console.log(response.data);
   }
 
   return (

@@ -1,50 +1,41 @@
-const { validationResult } = require("express-validator");
 const mapService = require("../services/maps.service");
+const { validationResult } = require("express-validator");
 
-module.exports.getGeocode = async (req, res) => {
+// Route handlers must match the routes file
+module.exports.getCoordinates = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { address } = req.query;
+
   try {
-    const { address, components } = req.query;
-
-    if (!address && !components) {
-      return res
-        .status(400)
-        .json({ message: "Address or components query param is required" });
-    }
-
-    const result = await mapService.geocodeAddress(address, components);
-
-    if (!result.results || result.results.length === 0) {
-      return res.status(404).json({ message: "No geocoding results found" });
-    }
-
-    const { lat, lng } = result.results[0].geometry.location;
-
-    return res.status(200).json({ latitude: lat, longitude: lng });
+    const coordinates = await mapService.getAddressCoordinate(address);
+    res.status(200).json(coordinates);
   } catch (error) {
-    console.error("Error in getGeocode:", error);
-    return res
-      .status(500)
-      .json({ message: "Geocoding failed", error: error.message });
+    console.error("Geocoding error:", error);
+    res.status(500).json({ message: "Failed to get coordinates" });
   }
 };
 
-module.exports.getDistanceTime = async (req, res, next) => {
+module.exports.getDistanceTime = async (req, res) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+
     const { origin, destination } = req.query;
     const distanceTime = await mapService.getDistanceTime(origin, destination);
-
     res.status(200).json(distanceTime);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Distance Matrix error:", err);
+    res.status(500).json({ message: "Failed to get distance and time" });
   }
 };
 
-module.exports.getAutoComplete = async (req, res, next) => {
+module.exports.getAutoCompleteSuggestions = async (req, res) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -52,11 +43,10 @@ module.exports.getAutoComplete = async (req, res, next) => {
     }
 
     const { input } = req.query;
-    const suggestions = await mapService.getAutoComplete(input);
-
+    const suggestions = await mapService.getAutoCompleteSuggestions(input);
     res.status(200).json(suggestions);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Autocomplete error:", err);
+    res.status(500).json({ message: "Failed to get suggestions" });
   }
 };

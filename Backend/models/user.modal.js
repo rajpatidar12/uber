@@ -41,10 +41,10 @@ userSchema.methods.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-userSchema.statics.hasPassword = async function (password) {
+userSchema.statics.hashPassword = async function (password) {
   return await bcrypt.hash(password, 10);
 };
 
-const userModel = mongoose.model("User", userSchema);
-module.exports = userModel; // Export the user model for use in other parts of the application.
-// This code defines a Mongoose schema for a user model in a MongoDB database.
+const userModel = mongoose.model("user", userSchema);
+
+module.exports = userModel;

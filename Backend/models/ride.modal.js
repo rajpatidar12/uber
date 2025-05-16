@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const rideSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "user", // Changed from "User" to "user" to match model name
     required: true,
   },
   captain: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Captain",
+    ref: "captain", // Changed from "Captain" to "captain" to match model name
   },
   pickup: {
     type: String,
@@ -55,4 +55,5 @@ const rideSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("ride", rideSchema);
+const rideModel = mongoose.model("ride", rideSchema);
+module.exports = rideModel;
